@@ -1,0 +1,10 @@
+.showInptField{
+    position: absolute;
+}
+.showtoggle{
+ position: relative;
+ top: 0;
+ left:440px;
+ transform: translate(0,31%);
+ font-size: 18px;
+}

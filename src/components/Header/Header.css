@@ -20,12 +20,14 @@ nav.header a:hover{
     margin-left: 15px;
     outline: none;
     border: none;
-    background-color: #193141;
+    background-color: #4d7b99;
+    color: white;
 }
 .signOut-btn:hover{
     outline: none;
     border: none;
-    background-color: #0a2b41;
+    background-color: #1298af;
+    
 }
 .signOut-text{
     color: darksalmon;

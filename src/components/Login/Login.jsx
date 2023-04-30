@@ -1,9 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 const Login = () => {
+    const navigate =useNavigate()
+    const location =useLocation()
+    const [show,setShow]=useState(true)
+    console.log(location)
     const {logInMethod}= useContext(AuthContext)
+    let from = location.state?.from?.pathname || "/";
     const handleSignIn =(event)=>{
         event.preventDefault()
         const form=event.target;
@@ -14,6 +21,7 @@ const Login = () => {
         .then(result=>{
             const logInUser =result.user;
             console.log(logInUser)
+            navigate(from, { replace: true });
         })
         .catch(error=>{
             console.log(error.message)
@@ -30,8 +38,15 @@ const Login = () => {
             </div>
              <div className='form-control'>
                 <label htmlFor="">Password</label>
-                <input type="password" name="password" id="password"  required/>
+                <input className='showInptField' type={show?'password':'text'} 
+                name="password" id="password"  required/>
             </div>
+            <p onClick={()=>setShow(!show)} className='showtoggle'>
+                {
+                    show? <span><FontAwesomeIcon icon={faEye} /></span>:
+                    <span><FontAwesomeIcon icon={faEyeSlash} /></span>
+                }
+            </p>
             <div >
                 <input className='submit-btn' type="submit" value="LogIn" />
             </div>
